@@ -85,7 +85,7 @@ f = function(x) {
     y = sqrt(x)
   } else if (x <= 0) {
     y = (-1) * x^3
-  } else{
+  } else {
     y = x^2
   }
   
