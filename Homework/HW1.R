@@ -17,12 +17,15 @@ sum.frac = function (n) {
   }
   result
 }
+
 log.add06 = function(n) {
   log(n) + 0.6
 }
+
 compare = function(n){
   sum.frac(n) > log.add06(n)
 }
+
 compare(500)
 compare(2000)
 compare(8000)
@@ -32,7 +35,6 @@ compare(8000)
 
 result = read.table("/Users/flisshou/Desktop/R_Computing_for_Business_Data_Analysis/results.txt", header = T)
 attach(result)
-names(result)
 names(result)
 par(mfrow = c(2, 2))
 
@@ -49,7 +51,7 @@ boxplot(prog2~gender, xlab = "gender", main = "Programming Semester2")
 #Q8. (10%)
 
 #(a) Use R to create a vector that contains all integers from 1 to 100 that are NOT divisible by 2, 3, or 7.
-Filter(function(i) { all(i %% c(2,3,7) != 0) }, seq(100))
+Filter(function(i) {all(i %% c(2,3,7) != 0)}, seq(100))
 
 #(b) Create a 10*10 identity matrix.
 diag(10)
