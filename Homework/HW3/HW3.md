@@ -42,6 +42,7 @@
 ```
 
 ###(c) List the elements of the following events:
+
 (1) A and C
 
 ```
@@ -68,7 +69,8 @@
 ```
 
 ###(d) Based on the classical approach, derive
-P(A and C)
+
+**P(A and C)**
 
 ```{R}
 count=0
@@ -81,8 +83,10 @@ for(i in 1:6)
 prob1=count/6^2
 print(prob1)
 ```
+>[1] 0.1666667
 
-P(B or C)
+
+**P(B or C)**
 
 ```{R}
 count=0
@@ -97,8 +101,10 @@ for(i in 1:6)
 prob2=count/6^2
 print(prob2)
 ```
+>[1] 0.5
 
-P(A and C)
+
+**P(A and C)**
 
 ```{R}
 count=0
@@ -115,6 +121,8 @@ for(i in 1:6)
 prob3=count/6^2
 print(prob3)
 ```
+>[1] 0.4444444
+
 
 ###(e) Use _sample()_ in _R_ to simulate the throwing of two dice 1,000 times. Compute P(A and C), P(B or C), and P(A and (B or C)) from the 1,000 runs. How different are the results from (d)?
 
@@ -126,30 +134,46 @@ result=cbind(d1,d2)
 ```
 
 
-P(A and C)
+**P(A and C)**
 ```{R}
 s1=length(result[(d1==4&d1+d2>=5),1])/n
 print(s1)
+```
+>[1] 0.167
+
+```{R}
 diff=prob1-s1
 print(diff)
 ```
+>[1] -0.0003333333
 
 
-P(B or C)
+**P(B or C)**
 ```{R}
 s2=length(result[(d1>d2|d1==4),1])/n
 print(s2)
-diff=prob2-s2
 ```
+>[1] 0.503
+
+```{R}
+diff=prob2-s2
+print(diff)
+```
+>[1] -0.003
 
 
-P(A and (B or C))
+**P(A and (B or C))**
 ```{R}
 s3=length(result[d1+d2>=5&(d1>d2|d1==4),1])/n
 print(s3)
+```
+>[1] 0.447
+
+```{R}
 diff=prob3-s3
 print(diff)
 ```
+>[1] -0.002555556
 
 ---
 
@@ -163,8 +187,13 @@ match.socks = (choose(7, 2) + choose(8, 2) + choose(9, 2)) / choose(socks.total,
 match.black.socks = choose(7, 2) / choose(socks.total, 2)
 
 print(match.socks)
+```
+>[1] 0.307971
+
+```{R}
 print(match.black.socks)
 ```
+>[1] 0.07608696
 
 ###(b) Design a simulation experiment (Hint: Use _sample()_ in R), which repeats the random process of choosing two socks for 5,000 times.
 ###What is the _simulated probability_ that they match? What is the _simulated probability_ that a black pair is chosen?
@@ -206,8 +235,15 @@ f.socks.sim = function (times, token) {
          })
 }
 f.socks.sim(5000, 'all')
+```
+>[1] 0.2994
+
+```{R}
 f.socks.sim(5000, 'black')
 ```
+>[1] 0.0726
+
+---
 
 ###Q3. (20%) A committee consists of five Chicanos, two Asians, three African Americans, and two Caucasians. A subcommittee of five is chosen at random.
 ###(a) What is the _exact probability_ that all the ethnic groups are represented on the subcommittee (please mathematically derive the probability)?
@@ -217,6 +253,7 @@ committee=5+2+3+2
 prob=choose(5,1)*choose(2,1)*choose(3,1)*choose(2,1)*choose(committee-4,1)/factorial(2)/choose(12,5)
 print(prob)
 ```
+>[1] 0.3030303
 
 ###(b) Design a simulation experiment (Hint: Use _sample()_ in R), which repeats the random process of choosing five guys for 5,000 times. What is the _simulated probability_ of all the ethnic groups are represented on the subcommittee?
 
@@ -241,6 +278,7 @@ f.committee.sim=function(times){
 }
 f.committee.sim(5000)
 ```
+>[1] 0.3052
 
 ### Is it close to the probability in part (a)?
 
@@ -248,6 +286,7 @@ f.committee.sim(5000)
 diff=prob-f.committee.sim(5000)
 print(diff)#ans:yes
 ```
+>[1] -0.008769697
 
 ---
 
@@ -260,6 +299,7 @@ denominator = choose(52, 2)
 classical = choose(4, 1) * choose(16, 1) / denominator
 print(classical)
 ```
+>[1] 0.04826546
 
 ###(b) Now, let the numbers 1-52 represents a deck of cards. Assign the numbers 1-4 to the four aces and the numbers 37-52 to the 16 cards > 10.
 ###Use the _sample_ function and the _for_ loop to simulate the random draw of 2 cards **50,000** times (hint: with or without replacement?). Create a variable _success_ that represents the number of times you hit 21 points (i.e., Blackjack). Divide success by 50,000 to obtain the relative probability. Is the relative probability close to the classical one from part (a)?
@@ -283,16 +323,20 @@ f.bj.sim = function(times) {
 relative = f.bj.sim(50000)
 
 print(relative)
+```
+>[1] 0.04766
 
+```{R}
 print(paste0("Classical Probability minus Relative Probability is :: " , classical - relative))
 ```
-
+>[1] "Classical Probability minus Relative Probability is :: 0.000605460030165914"
 
 ###What will happen to the relative probability if you only simulate the game for 50 times?
 
 ```{R}
 f.bj.sim(50)
 ```
+>[1] 0.06
 
 ---
 
@@ -303,6 +347,7 @@ f.bj.sim(50)
 ```{R}
 1-prod(c(9901:10000)/10000)
 ```
+>[1] 0.391434
 
 ###(b) Simulate the last 4 digits for 100 students 5,000 times. How many times do you find at least two students have the same ID? Divide the number by 5,000, what is the fraction?
 
@@ -314,8 +359,13 @@ sameID=function(){
 }
 F=replicate(5000,sameID())
 sum(F<100)
+```
+>[1] 1924
+
+```{R}
 sum(F<100)/5000
 ```
+>[1] 0.3848
 
 ###(c) What is the smallest class enrollment (i.e., number of students) for which the probability that at least two students have the same ID numbers is at least 0.5?
 
@@ -330,5 +380,6 @@ findN=function(){
 }
 findN()
 ```
+>[1] 119
 
 ---
