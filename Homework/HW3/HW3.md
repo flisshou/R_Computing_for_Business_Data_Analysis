@@ -1,8 +1,8 @@
-#Homework 3
+# Homework 3
 
-###Q1. (25%) Two six-sided fair dices are thrown sequentially, and their face values are recorded. (a), (b), (c), & (d) do NOT need to be done in R.
+### Q1. (25%) Two six-sided fair dices are thrown sequentially, and their face values are recorded. (a), (b), (c), & (d) do NOT need to be done in R.
 
-###(a) List the sample space.
+#### (a) List the sample space.
 
 ```
 (1,1)(1,2)(1,3)(1,4)(1,5)(1,6)
@@ -13,7 +13,7 @@
 (6,1)(6,2)(6,3)(6,4)(6,5)(6,6)
 ```
 
-###(b) List the elements that make up the following events:
+#### (b) List the elements that make up the following events:
 (1) A=the sum of the two values is at least 5,
 
 ```
@@ -41,7 +41,7 @@
 (4,1)(4,2)(4,3)(4,4)(4,5)(4,6)
 ```
 
-###(c) List the elements of the following events:
+#### (c) List the elements of the following events:
 
 (1) A and C
 
@@ -68,7 +68,7 @@
 (6,1)(6,2)(6,3)(6,4)(6,5)
 ```
 
-###(d) Based on the classical approach, derive
+#### (d) Based on the classical approach, derive
 
 **P(A and C)**
 
@@ -83,6 +83,7 @@ for(i in 1:6)
 prob1=count/6^2
 print(prob1)
 ```
+
 >[1] 0.1666667
 
 
@@ -101,6 +102,7 @@ for(i in 1:6)
 prob2=count/6^2
 print(prob2)
 ```
+
 >[1] 0.5
 
 
@@ -124,7 +126,7 @@ print(prob3)
 >[1] 0.4444444
 
 
-###(e) Use _sample()_ in _R_ to simulate the throwing of two dice 1,000 times. Compute P(A and C), P(B or C), and P(A and (B or C)) from the 1,000 runs. How different are the results from (d)?
+### (e) Use _sample()_ in _R_ to simulate the throwing of two dice 1,000 times. Compute P(A and C), P(B or C), and P(A and (B or C)) from the 1,000 runs. How different are the results from (d)?
 
 ```{R}
 n=1000
@@ -140,6 +142,7 @@ s1=length(result[(d1==4&d1+d2>=5),1])/n
 print(s1)
 ```
 >[1] 0.167
+
 
 ```{R}
 diff=prob1-s1
@@ -177,9 +180,9 @@ print(diff)
 
 ---
 
-###Q2. (20%) A drawer of socks contains seven black socks, eight blue socks, and nine green socks. There is NO difference between left and right for those socks. Two socks are chosen in dark.
+### Q2. (20%) A drawer of socks contains seven black socks, eight blue socks, and nine green socks. There is NO difference between left and right for those socks. Two socks are chosen in dark.
 
-###(a) What is the _exact probability_ that they match (i.e., two socks have the same color)? What is the _exact probability_ that a black pair is chosen?
+#### (a) What is the _exact probability_ that they match (i.e., two socks have the same color)? What is the _exact probability_ that a black pair is chosen?
 
 ```{R}
 socks.total = 7 + 8 + 9
@@ -195,8 +198,8 @@ print(match.black.socks)
 ```
 >[1] 0.07608696
 
-###(b) Design a simulation experiment (Hint: Use _sample()_ in R), which repeats the random process of choosing two socks for 5,000 times.
-###What is the _simulated probability_ that they match? What is the _simulated probability_ that a black pair is chosen?
+#### (b) Design a simulation experiment (Hint: Use _sample()_ in R), which repeats the random process of choosing two socks for 5,000 times.
+#### What is the _simulated probability_ that they match? What is the _simulated probability_ that a black pair is chosen?
 
 ```{R}
 f.socks.sim = function (times, token) {
@@ -238,6 +241,7 @@ f.socks.sim(5000, 'all')
 ```
 >[1] 0.2994
 
+
 ```{R}
 f.socks.sim(5000, 'black')
 ```
@@ -245,8 +249,8 @@ f.socks.sim(5000, 'black')
 
 ---
 
-###Q3. (20%) A committee consists of five Chicanos, two Asians, three African Americans, and two Caucasians. A subcommittee of five is chosen at random.
-###(a) What is the _exact probability_ that all the ethnic groups are represented on the subcommittee (please mathematically derive the probability)?
+### Q3. (20%) A committee consists of five Chicanos, two Asians, three African Americans, and two Caucasians. A subcommittee of five is chosen at random.
+#### (a) What is the _exact probability_ that all the ethnic groups are represented on the subcommittee (please mathematically derive the probability)?
 
 ```{R}
 committee=5+2+3+2
@@ -255,7 +259,7 @@ print(prob)
 ```
 >[1] 0.3030303
 
-###(b) Design a simulation experiment (Hint: Use _sample()_ in R), which repeats the random process of choosing five guys for 5,000 times. What is the _simulated probability_ of all the ethnic groups are represented on the subcommittee?
+#### (b) Design a simulation experiment (Hint: Use _sample()_ in R), which repeats the random process of choosing five guys for 5,000 times. What is the _simulated probability_ of all the ethnic groups are represented on the subcommittee?
 
 ```{R}
 f.committee.sim=function(times){
@@ -280,7 +284,7 @@ f.committee.sim(5000)
 ```
 >[1] 0.3052
 
-### Is it close to the probability in part (a)?
+#### Is it close to the probability in part (a)?
 
 ```{R}
 diff=prob-f.committee.sim(5000)
@@ -290,9 +294,9 @@ print(diff)#ans:yes
 
 ---
 
-###Q4. (20%) Simulating Blackjack
-###(a) In the poker game Blackjack, let each of the 4 aces denote 11 points and each of the 16 cards >= 10 (i.e., 10, J, Q, K) denote 10 points. Suppose someone picks 2 cards randomly out of a deck of cards (52 cards total), what is the probability of getting 21 points (i.e., Blackjack)?
-###Use the _choose_ function to obtain the answer.
+### Q4. (20%) Simulating Blackjack
+#### (a) In the poker game Blackjack, let each of the 4 aces denote 11 points and each of the 16 cards >= 10 (i.e., 10, J, Q, K) denote 10 points. Suppose someone picks 2 cards randomly out of a deck of cards (52 cards total), what is the probability of getting 21 points (i.e., Blackjack)?
+#### Use the _choose_ function to obtain the answer.
 
 ```{R}
 denominator = choose(52, 2)
@@ -301,8 +305,8 @@ print(classical)
 ```
 >[1] 0.04826546
 
-###(b) Now, let the numbers 1-52 represents a deck of cards. Assign the numbers 1-4 to the four aces and the numbers 37-52 to the 16 cards > 10.
-###Use the _sample_ function and the _for_ loop to simulate the random draw of 2 cards **50,000** times (hint: with or without replacement?). Create a variable _success_ that represents the number of times you hit 21 points (i.e., Blackjack). Divide success by 50,000 to obtain the relative probability. Is the relative probability close to the classical one from part (a)?
+#### (b) Now, let the numbers 1-52 represent a deck of cards. Assign the numbers 1-4 to the four aces and the numbers 37-52 to the 16 cards > 10.
+#### Use the _sample_ function and the _for_ loop to simulate the random draw of 2 cards **50,000** times (hint: with or without replacement?). Create a variable _success_ that represents the number of times you hit 21 points (i.e., Blackjack). Divide success by 50,000 to obtain the relative probability. Is the relative probability close to the classical one from part (a)?
 
 ```{R}
 f.bj.sim = function(times) {
@@ -329,27 +333,30 @@ print(relative)
 ```{R}
 print(paste0("Classical Probability minus Relative Probability is :: " , classical - relative))
 ```
+
 >[1] "Classical Probability minus Relative Probability is :: 0.000605460030165914"
 
-###What will happen to the relative probability if you only simulate the game for 50 times?
+
+#### What will happen to the relative probability if you only simulate the game for 50 times?
 
 ```{R}
 f.bj.sim(50)
 ```
+
 >[1] 0.06
 
 ---
 
-###Q5. (15%) Assume that the last 4 digits of one's ID in NCCU could be any number between 0000-9999. It is POSSIBLE for two guys to have identical last 4 digits of their ID. User _R_ to
+### Q5. (15%) Assume that the last 4 digits of one's ID in NCCU could be any number between 0000-9999. It is POSSIBLE for two guys to have identical last 4 digits of their ID. User _R_ to
 
-###(a) Find that the actual probability that at least two students in a class of 100 share the same last 4 digits of theire ID.
+#### (a) Find that the actual probability that at least two students in a class of 100 share the same last 4 digits of their ID.
 
 ```{R}
 1-prod(c(9901:10000)/10000)
 ```
 >[1] 0.391434
 
-###(b) Simulate the last 4 digits for 100 students 5,000 times. How many times do you find at least two students have the same ID? Divide the number by 5,000, what is the fraction?
+#### (b) Simulate the last 4 digits for 100 students 5,000 times. How many times do you find at least two students have the same ID? Divide the number by 5,000, what is the fraction?
 
 ```{R}
 sameID=function(){
@@ -367,7 +374,7 @@ sum(F<100)/5000
 ```
 >[1] 0.3848
 
-###(c) What is the smallest class enrollment (i.e., number of students) for which the probability that at least two students have the same ID numbers is at least 0.5?
+#### (c) What is the smallest class enrollment (i.e., number of students) for which the probability that at least two students have the same ID numbers is at least 0.5?
 
 ```{R}
 findN=function(){
