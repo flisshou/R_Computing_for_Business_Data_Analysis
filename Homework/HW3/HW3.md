@@ -294,12 +294,41 @@ print(paste0("Classical Probability minus Relative Probability is :: " , classic
 f.bj.sim(50)
 ```
 
+---
 
+###Q5. (15%) Assume that the last 4 digits of one's ID in NCCU could be any number between 0000-9999. It is POSSIBLE for two guys to have identical last 4 digits of their ID. User _R_ to
 
+###(a) Find that the actual probability that at least two students in a class of 100 share the same last 4 digits of theire ID.
 
+```{R}
+1-prod(c(9901:10000)/10000)
+```
 
+###(b) Simulate the last 4 digits for 100 students 5,000 times. How many times do you find at least two students have the same ID? Divide the number by 5,000, what is the fraction?
 
+```{R}
+sameID=function(){
+  S=sample(c(0:9999),100,replace=TRUE)
+  n=length(unique(S))
+  return(n)
+}
+F=replicate(5000,sameID())
+sum(F<100)
+sum(F<100)/5000
+```
 
+###(c) What is the smallest class enrollment (i.e., number of students) for which the probability that at least two students have the same ID numbers is at least 0.5?
 
+```{R}
+findN=function(){
+  for(n in 1:10000){
+    p=1-prod((10000-n+1):10000/10000)
+    if(p>=0.5){
+      return(n)
+    }
+  }
+}
+findN()
+```
 
-d
+---
